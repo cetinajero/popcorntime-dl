@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <title>{{ site.title }}</title>
+    {% include components/meta/bootstrap.html %}
+    {% include components/stylesheets/bootstrap.css %}
+  </head>
+
+  <body>
+    {% include components/navbars/bootstrap.html %}
+    <main role="main" class="container">
+      {% include components/apis/popcorntime.html %}
+    </main>
+    {% include components/scripts/popcorntime.js %}
+  </body>
+
+</html>

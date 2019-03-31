@@ -1,0 +1,13 @@
+<div class="text-right my-2">
+  <a
+  class="btn btn-{{ include.class }}"
+  href="${item.torrents.en["{{ include.resolution }}"].url}"
+  role="button"
+  title="Provider: ${item.torrents.en["{{ include.resolution }}"].provider},
+         Seeds: ${item.torrents.en["{{ include.resolution }}"].seed},
+         Peers: ${item.torrents.en["{{ include.resolution }}"].peer}">
+    <i class="fas fa-magnet"></i>
+    Download {{ include.resolution }}
+    <span>(${item.torrents.en["{{ include.resolution }}"].filesize})</span>
+  </a>
+</div>

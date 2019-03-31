@@ -1,0 +1,23 @@
+<div class="jumbotron row" data-component="jumbotrons/bootstrap">
+
+  <div class="col-md-6 col-lg-4">
+    <img src="${item.images.poster}" alt="${item.title}">
+  </div>
+
+  <div class="col-md-6 col-lg-8">
+
+    {% include components/cards/movie-card.html %}
+
+    <div class="text-right my-2">
+      <a class="btn btn-info" href="${item.trailer}" role="button">
+        <i class="fas fa-video"></i>
+        View trailer
+      </a>
+    </div>
+
+    {% include components/buttons/download.html resolution = "1080p" class = "success" %}
+    {% include components/buttons/download.html resolution = "720p"  class = "warning" %}
+
+  </div>
+
+</div>

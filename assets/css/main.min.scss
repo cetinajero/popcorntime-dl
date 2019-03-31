@@ -1,0 +1,9 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+// Define charset
+@charset "utf-8";
+
+// Import bootstrap partials
+@import "components/jumbotrons/bootstrap";
+@import "components/navbars/bootstrap";

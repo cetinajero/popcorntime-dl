@@ -1,0 +1,22 @@
+<h1 data-id="${item.imdb_id}" class="pt-3">
+  ${item.title}
+  <small class="text-muted">(${item.year})</small>
+</h1>
+
+<span class="badge badge-light" title="Watching"><i class="fas fa-eye"></i> ${item.rating.watching}</span>
+<span class="badge badge-light" title="Score"><i class="fas fa-star"></i> ${ratingScore}</span>
+<span class="badge badge-light" title="Votes"><i class="fas fa-user-check"></i> ${item.rating.votes}</span>
+<span class="badge badge-secondary">${item.certification}</span>
+
+<div class="pt-1 pb-3">
+  <span class="badge badge-info">${itemGenres}</span>
+</div>
+
+<p class="lead">
+  <strong>Released:</strong>
+  ${releasedDate}
+</p>
+
+<p class="lead">
+  ${item.synopsis}
+</p>
