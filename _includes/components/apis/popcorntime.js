@@ -47,6 +47,7 @@
   function startApp() {
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('query');
+    document.querySelector('#searchInput').value = query;
     var response = requestPopcornTimeApi(query);
     response.onreadystatechange = function() {
       if (response.readyState == 4)

@@ -15,8 +15,9 @@
       </a>
     </div>
 
-    {% include components/buttons/download.html resolution = "1080p" class = "success" %}
-    {% include components/buttons/download.html resolution = "720p"  class = "warning" %}
+    ${ item.torrents.en["2160p"] ? `{% include components/buttons/download.html resolution = "2160p" class = "success" %}` : '' }
+    ${ item.torrents.en["1080p"] ? `{% include components/buttons/download.html resolution = "1080p" class = "success" %}` : '' }
+    ${ item.torrents.en["720p"] ? `{% include components/buttons/download.html resolution = "720p" class = "warning" %}` : '' }
 
   </div>
 
