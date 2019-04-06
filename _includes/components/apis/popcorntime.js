@@ -35,6 +35,8 @@
     const ratingScore = item.rating.percentage/10
 
     var newcontent = document.createElement('div');
+
+    {% include components/jumbotron/bootstrap.js %}
     newcontent.innerHTML = `
       {% include components/jumbotron/bootstrap.html %}
     `;

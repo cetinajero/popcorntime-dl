@@ -1,13 +1,13 @@
 <div class="text-right my-2">
   <a
-  class="btn btn-{{ include.class }}"
-  href="${item.torrents.en["{{ include.resolution }}"].url}"
+  class="btn btn-${currentRes == '720p' ? 'warning' : 'success'}"
+  href="${item.torrents[currentLang][currentRes].url}"
   role="button"
-  title="Provider: ${item.torrents.en["{{ include.resolution }}"].provider},
-         Seeds: ${item.torrents.en["{{ include.resolution }}"].seed},
-         Peers: ${item.torrents.en["{{ include.resolution }}"].peer}">
+  title="Provider: ${item.torrents[currentLang][currentRes].provider},
+         Seeds: ${item.torrents[currentLang][currentRes].seed},
+         Peers: ${item.torrents[currentLang][currentRes].peer}">
     <i class="fas fa-magnet"></i>
-    Download {{ include.resolution }}
-    <span>(${item.torrents.en["{{ include.resolution }}"].filesize})</span>
+    Download ${currentRes}
+    <span>(${item.torrents[currentLang][currentRes].filesize})</span>
   </a>
 </div>
