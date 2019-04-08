@@ -6,3 +6,7 @@ api:
     host: https://tv-v2.api-fetch.website
     uri:
       movies: /movies/1?keywords=${query}
+  yify:
+    host: https://www.yifysubtitles.com
+    uri:
+      movies: /movie-imdb/${item.imdb_id}

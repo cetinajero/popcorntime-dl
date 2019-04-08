@@ -14,5 +14,5 @@ bundle install
 Run server:
 
 ```bash
-bundle exec jekyll serve
+rake
 ```
