@@ -8,7 +8,7 @@
 
     {% include components/cards/movie-card.html %}
 
-    <div class="text-right my-2">
+    <div class="text-right my-2 ${item.trailer ? '' : 'd-none'}">
       <a class="btn btn-info" href="${item.trailer}" role="button">
         <i class="fas fa-video"></i>
         View trailer

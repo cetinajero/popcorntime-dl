@@ -4,8 +4,8 @@ url: cetinajero.github.io/popcorntime-dl
 api:
   popcorntime:
     host: https://tv-v2.api-fetch.website
-    uri:
-      movies: /movies/1?keywords=${query}
+    types: |
+      ['movies', 'shows']
   yify:
     host: https://www.yifysubtitles.com
     uri:
