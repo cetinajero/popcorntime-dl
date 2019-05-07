@@ -47,6 +47,7 @@ function magnetShows() {
       data-episode-first-aired-${i}="${item.episodes[i].first_aired}"
       data-episode-title-${i}="${item.episodes[i].title}"
       data-episode-overview-${i}="${item.episodes[i].overview}"
+      data-episode-torrents-${i}='${JSON.stringify(item.episodes[i].torrents)}'
     `;
   }
 

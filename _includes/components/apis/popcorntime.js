@@ -9,10 +9,12 @@ const queryTypes = {{ site.api.popcorntime.types }};
 
   function requestPopcornTimeApi(query, type) {
     // Append uri only when asked for many results
-    const uri = type.substring(type.length - 1, type.length) == 's' ? '1?keywords=' : '';
+    const uri = type.substring(type.length - 1, type.length) == 's'
+      ? `${type}/1?keywords=${query}`
+      : `${type}/${query}`;
 
     var request = makeHttpObject();
-    request.open("GET", `{{ site.api.popcorntime.host }}/${type}/${uri}${query}`, true);
+    request.open("GET", `{{ site.api.popcorntime.host }}/${uri}`, true);
     request.send(null);
     request.onreadystatechange = function() {
       if (request.readyState == 4)
@@ -27,7 +29,7 @@ const queryTypes = {{ site.api.popcorntime.types }};
       for (item = 0; item < response.length; item++) {
         appendItem(response[item]);
       }
-    } else if (response.imdb_id) { // only one results
+    } else if (response.imdb_id) { // only one result
         appendItem(response);
     } else if (json.responseURL.includes(`/${queryTypes[queryTypes.length - 1]}/`)) {
       notifyNoResults(); // no results in the last query to the API

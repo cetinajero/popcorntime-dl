@@ -13,11 +13,27 @@ $('#bootstrapModal').on('show.bs.modal', function (event) {
           <td id="dataEpisodeFirstAired${i}"></td>
           <td id="dataEpisodeTitle${i}"></td>
           <td id="dataEpisodeOverview${i}"></td>
+          <td>${ appendTvShowMagents`${i}` }</td>
         </tr>
-      `;;
+      `;
     }
 
     return rows;
+  }
+
+  function appendTvShowMagents(strings, i) {
+    const torrents = button.data(`episode-torrents-${i}`);
+    var buttons = '';
+
+    for (var resolution = 0; resolution < Object.keys(torrents).length; resolution++){
+      const currentRes = Object.keys(torrents)[resolution];
+      const currentTorrent = torrents[currentRes];
+      buttons += currentRes != 0
+        ? `{% include components/buttons/download-tv-show.html %}`
+        : '';
+    }
+
+    return buttons;
   }
 
   document.querySelector('.modal-body').innerHTML = `

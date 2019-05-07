@@ -1,0 +1,15 @@
+<div class="text-right my-2">
+  <a
+  class="btn btn-${
+    currentRes == '480p' ? 'danger' :
+    currentRes == '720p' ? 'warning' : 'success'
+  }"
+  href="${currentTorrent.url}"
+  role="button"
+  title="Provider: ${currentTorrent.provider},
+         Seeds: ${currentTorrent.seeds},
+         Peers: ${currentTorrent.peers}">
+    <i class="fas fa-magnet"></i>
+    ${currentRes}
+  </a>
+</div>
