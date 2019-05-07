@@ -1,4 +1,4 @@
-<script>
+const queryTypes = {{ site.api.popcorntime.types }};
 
   function makeHttpObject() {
     try { return new XMLHttpRequest();                    } catch (error) {}
@@ -7,42 +7,60 @@
     throw new Error("Could not create HTTP request object.");
   }
 
-  function requestPopcornTimeApi(query) {
+  function requestPopcornTimeApi(query, type) {
+    // Append uri only when asked for many results
+    const uri = type.substring(type.length - 1, type.length) == 's'
+      ? `${type}/1?keywords=${query}`
+      : `${type}/${query}`;
+
     var request = makeHttpObject();
-    request.open("GET", `{{ site.api.popcorntime.host }}{{ site.api.popcorntime.uri.movies }}`, true);
+    request.open("GET", `{{ site.api.popcorntime.host }}/${uri}`, true);
     request.send(null);
-    return request;
+    request.onreadystatechange = function() {
+      if (request.readyState == 4)
+        parsePopcornTimeResponse(request);
+    };
+    return null;
   }
 
   function parsePopcornTimeResponse(json) {
     var response = JSON.parse(json.responseText);
-    if (response.length) {
+    if (response.length) { // many results
       for (item = 0; item < response.length; item++) {
         appendItem(response[item]);
       }
-    } else {
-      document.querySelector('#show-results').innerHTML = `
-        <p class="lead text-center pt-5">No movies to show</p>
-      `;
+    } else if (response.imdb_id) { // only one result
+        appendItem(response);
+    } else if (json.responseURL.includes(`/${queryTypes[queryTypes.length - 1]}/`)) {
+      notifyNoResults(); // no results in the last query to the API
     }
   }
 
   function appendItem(item) {
     const showResults = document.querySelector('#show-results');
-    const itemGenres = item.genres.join(' / ');
+    const itemGenres = item.genres ? item.genres.join(' / ') : '';
     const timeZoneOffSet = new Date().getTimezoneOffset();
     const releasedDate = new Date((item.released+timeZoneOffSet*60)*1000).toDateString();
+    const updatedDate = new Date((item.last_updated/1000+timeZoneOffSet*60)*1000).toDateString();
     const ratingScore = item.rating.percentage/10
 
     var newcontent = document.createElement('div');
 
     {% include components/jumbotron/bootstrap.js %}
-    newcontent.innerHTML = `
+    newcontent.innerHTML = item.genres ? `
       {% include components/jumbotron/bootstrap.html %}
-    `;
+    ` : requestPopcornTimeApi(item.imdb_id, 'show');
 
     while (newcontent.firstChild) {
       showResults.appendChild(newcontent.firstChild);
+    }
+  }
+
+  function notifyNoResults() {
+    if (!document.querySelector('#show-results').childNodes.length) {
+      document.querySelector('#show-results').innerHTML = `
+        <p class="lead text-center pt-5">No results found</p>
+      `;
     }
   }
 
@@ -50,13 +68,9 @@
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('query');
     document.querySelector('#searchInput').value = query;
-    var response = requestPopcornTimeApi(query);
-    response.onreadystatechange = function() {
-      if (response.readyState == 4)
-        parsePopcornTimeResponse(response);
-    };
+    for (i = 0; i < queryTypes.length; i++) {
+      requestPopcornTimeApi(query, queryTypes[i]);
+    }
   }
 
   startApp();
-
-</script>
