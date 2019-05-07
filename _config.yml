@@ -1,5 +1,6 @@
 title: popcorntime-dl
 url: cetinajero.github.io/popcorntime-dl
+theme:
 
 api:
   popcorntime:
@@ -10,3 +11,5 @@ api:
     host: https://www.yifysubtitles.com
     uri:
       movies: /movie-imdb/${item.imdb_id}
+
+exclude: ["docs", "Gemfile", "Gemfile.lock", "LICENSE", "Rakefile", "README.md"]
