@@ -31,7 +31,7 @@ function magnetLanguages() {
   }
 
   if (item.episodes) { // is a show
-    buttons += `{% include components/buttons/download-show.html %}`;
+    buttons += `{% include components/buttons/view-episodes.html %}`;
   }
 
   return buttons;
@@ -41,7 +41,13 @@ function magnetShows() {
   var attributes = '';
 
   for (var i = 0; i < item.episodes.length; i++) {
-    attributes += `data-title-episode-${i}="${item.episodes[i].title}"`
+    attributes += `
+      data-episode-num-${i}="${item.episodes[i].season}x${item.episodes[i].episode}"
+      data-episode-id-${i}="${item.episodes[i].tvdb_id}"
+      data-episode-first-aired-${i}="${item.episodes[i].first_aired}"
+      data-episode-title-${i}="${item.episodes[i].title}"
+      data-episode-overview-${i}="${item.episodes[i].overview}"
+    `;
   }
 
   return attributes;
