@@ -4,7 +4,7 @@ theme:
 
 api:
   popcorntime:
-    host: https://tv-v2.api-fetch.website
+    host: https://cors-anywhere.herokuapp.com/https://tv-v2.api-fetch.sh
     types: |
       ['movies', 'shows']
   yify:
