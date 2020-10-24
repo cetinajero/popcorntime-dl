@@ -6,7 +6,7 @@ Find Popcorn Time magnets at a glance
 
 ## Usage
 
- 1. Save the [precompiled HTML file](https://raw.githubusercontent.com/cetinajero/popcorntime-dl/master/_site/index.html) on your computer
+ 1. Download the [precompiled HTML file](https://cetinajero.github.io/gitzip/?download=cetinajero/popcorntime-dl/blob/master/_site/index.html)
  1. Open it
  1. Enjoy
 
