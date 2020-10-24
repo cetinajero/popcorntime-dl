@@ -8,7 +8,7 @@ api:
     types: |
       ['movies', 'shows']
   yify:
-    host: https://www.yifysubtitles.com
+    host: https://yts-subs.com
     uri:
       movies: /movie-imdb/${item.imdb_id}
 
