@@ -14,7 +14,7 @@ const queryTypes = {{ site.api.popcorntime.types }};
       : `${type}/${query}`;
 
     var request = makeHttpObject();
-    request.open("GET", `{{ site.api.popcorntime.host }}/${uri}`, true);
+    request.open("GET", `{{ site.api.popcorntime.cors-proxy }}/{{ site.api.popcorntime.server }}/${uri}`, true);
     request.send(null);
     request.onreadystatechange = function() {
       if (request.readyState == 4)

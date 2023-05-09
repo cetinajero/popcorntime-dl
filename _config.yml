@@ -4,7 +4,8 @@ theme:
 
 api:
   popcorntime:
-    host: https://cors-anywhere.herokuapp.com/http://popcorn.ivan1986.tk
+    cors-proxy: https://cors-anywhere.herokuapp.com
+    server:  https://popcorn-time.ga # /movies/1?keywords=shawshank
     types: |
       ['movies', 'shows']
   yify:
